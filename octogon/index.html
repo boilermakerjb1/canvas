@@ -9,46 +9,32 @@
       }
     </style>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+     <script src="poly.js"></script> 
   </head>
   <body>
     <canvas id="fractal" width="800" height="800"></canvas>
     <script>
+
       var canvas = document.getElementById('fractal');
       var context = canvas.getContext('2d');
 
       // begin custom shape
-      context.beginPath();
-      //Build grid
-      context.moveTo(400,400);
-      context.lineTo(400,800);
-      context.moveTo(400,400);
-      context.lineTo(800,400);
-      context.moveTo(400,400);
-      context.lineTo(0,400);
-      context.moveTo(400,400);
-      context.lineTo(400,0);
-      context.moveTo(400,400);
-      context.arc(400,400,300,0,2*Math.PI);
 
-
-      var start_x = 300*Math.cos(Math.PI/8);
-      var start_y = 300*Math.sin(Math.PI/8);
-      var end_x = 300*Math.cos((Math.PI/8)+1);
-      var end_y = 300*Math.sin((Math.PI/8)+1);
-      context.moveTo(start_x,start_y);
-      context.lineTo(end_x,end_y);
-      var start_x = end_x;
-      var start_y = end_y;
-      var end_x = 300*Math.cos((Math.PI/8+2)*(Math.PI/4));
-      var end_y = 300*Math.sin((Math.PI/8+2)*(Math.PI/4));
-      context.moveTo(start_x,start_y);
-      context.lineTo(end_x,end_y);
+      //while(true){
+          for( i= 1; i < 10; i++){
+              context.beginPath();
+              var polygon = new Polygon( i, 400, 400, 300 ) ;
+              polygon.draw(context);
+              context.closePath();
+              context.lineWidth = 1;
+              context.strokeStyle = polygon.color();
+              context.stroke();
+              //setTimeout('', 5000);
+          }
+      //}
 
       // complete custom shape
-      context.closePath();
-      context.lineWidth = 1;
-      context.strokeStyle = 'blue';
-      context.stroke();
+
     </script>
   </body>
 </html>  
